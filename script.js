@@ -14,9 +14,9 @@ const aslabFinal = [
 ];
 
 /* ── Supabase config (satu tempat saja) ── */
-const SUPABASE_URL = 'https://kvnnhjfzjzquvskwjqtk.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_iEWhfoThVs-4rddxjbbaZw_jDjjlxp0';
-const BUCKET = 'pendaftar-dokumen';
+const SUPABASE_URL = 'https://lxzplllmxyxmxznkezdv.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_G_AF3JdIU0Fk7_zGhTf0Fw_Lx4ghd-_';
+const BUCKET = 'pendaftar_dokumen';
 
 let dbClient = null;
 try {
