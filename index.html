@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pendaftaran Calon Asisten Laboratorium</title>
+  
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://db.onlinewebfonts.com/c/47647a122a3767df07970e1eda4e7d82?family=Friz+Quadrata" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+</head>
+<body>
+
+<div id="page-lobby" class="page active">
+  <div class="lobby-inner">
+
+    <h1 class="lobby-title">
+      Open Recruitment<br/>
+      <span>Calon Asisten Fisika Laboratorium I</span>
+    </h1>
+
+    <p class="lobby-sub">
+      Daftarkan dirimu sebagai calon asisten fisika laboratorium I. 
+    </p>
+
+    <button class="btn-primary" onclick="goToForm()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+      Isi Formulir
+    </button>
+
+    <p class="lobby-note">
+      Semangat bre🔥🔥
+    </p>
+
+    <!--<div style="margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+      <button onclick="showPage('page-lolos-berkas')" style="display:inline-flex;align-items:center;gap:8px;background:rgba(202,138,4,.1);border:1px solid rgba(202,138,4,.25);color:#fde047;font-size:.85rem;font-weight:600;padding:10px 20px;border-radius:10px;cursor:pointer;transition:background .2s;">
+        Pengumuman Lolos Berkas
+      </button>
+      <button onclick="showPage('page-lolos-final')" style="display:inline-flex;align-items:center;gap:8px;background:rgba(22,163,74,.1);border:1px solid rgba(22,163,74,.25);color:#86efac;font-size:.85rem;font-weight:600;padding:10px 20px;border-radius:10px;cursor:pointer;transition:background .2s;">
+        Pengumuman Aslab
+      </button>
+    </div>-->
+  </div>
+</div>
+
+<div id="page-form" class="page">
+  <div class="form-body">
+
+    <div class="form-step active" id="step-1">
+      <div class="catatan-box" >
+        <div>
+          <h3>SYARAT BERKAS</h3>
+          <ul>
+            <li style="color:var(--navy)">Nilai mata kuliah Fisika Laboratorium 1 minimal AB.</li>
+            <li style="color:var(--navy)">Nilai mata kuliah Elektronika minimal B.</li>
+            <li style="color:var(--navy)">Bukti follow ig madya <a href="https://instagram.com/lab_fisikamadya" target="_blank" style="color: var(--mid); font-weight:600;">@lab_fisikamadya</a></li>
+            <li style="color:var(--navy)">Transkip nilai.</li>
+            <li style="color:var(--navy)">CV (ATS atau kreatif).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="field-row">
+          <div class="field">
+            <label>Nama Lengkap <span class="req">*</span></label>
+            <input type="text" id="nama_lengkap" placeholder="Windah Bersaudara" />
+          </div>
+          <div class="field" style="margin-bottom: 18px;">
+            <label>NRP <span class="req">*</span></label>
+            <input type="text" id="nrp" placeholder="5001241xxx" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Email Aktif <span class="req">*</span></label>
+            <input type="email" id="email" placeholder="email@gmail.com" />
+          </div>
+          <div class="field" style="margin-bottom: 18px;">
+            <label>Nomor WhatsApp <span class="req">*</span></label>
+            <input type="tel" id="no_wa" placeholder="08xxxxxxxxxx" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Motivasi Mendaftar Asisten Fisika Laboratorium 1 <span class="req">*</span></label>
+            <textarea id="motivasi" placeholder="Motivasimu apa bre..."></textarea>
+          </div>
+          <div style="margin-bottom: 18px;">
+            <label style="font-size:.82rem;font-weight: 600;color: var(--gray700);">Skala Prioritas <span class="req" style="color: var(--red); margin-left: 2px;">*</span></label>
+            <div class="choice-group">
+              <label class="choice-item-solid"><input type="radio" name="skala_prioritas" value="1" />1</label>
+              <label class="choice-item-solid"><input type="radio" name="skala_prioritas" value="2" />2</label>
+              <label class="choice-item-solid"><input type="radio" name="skala_prioritas" value="3" />3</label>
+              <label class="choice-item-solid"><input type="radio" name="skala_prioritas" value="4" />4</label>
+              <label class="choice-item-solid"><input type="radio" name="skala_prioritas" value="5" />5</label>
+              <label class="choice-item-solid"><input type="radio" name="skala_prioritas" value="6" />6</label>
+              <label class="choice-item-solid"><input type="radio" name="skala_prioritas" value="7" />7</label>
+              <label class="choice-item-solid"><input type="radio" name="skala_prioritas" value="8" />8</label>
+              <label class="choice-item-solid"><input type="radio" name="skala_prioritas" value="9" />9</label>
+              <label class="choice-item-solid"><input type="radio" name="skala_prioritas" value="10" />10</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Bisa Mengoperasikan Tinkercad dan Proteus? <span class="req">*</span></label>
+            <div class="choice-group">
+              <label class="choice-item-solid"><input type="radio" name="bisa_tinkercad_proteus" value="ya" />Ya</label>
+              <label class="choice-item-solid"><input type="radio" name="bisa_tinkercad_proteus" value="tidak" />Tidak</label>
+            </div>
+          </div>
+          <div class="field">
+            <label>IPK Terbaru <span class="req">*</span></label>
+            <input type="number" id="ipk" step="0.01" min="0" max="4" placeholder="Contoh: 3.75" />
+            <span class="field-hint">Gak ada minimum ipk kok, tenang</span>
+          </div>
+        </div>
+
+        <div class="field-row one" style="margin-top:18px;">
+          <div class="field">
+            <label>Pilihan Judul Sebelum ETS - 1 <span class="req">*</span></label>
+            <select id="judul-a1" onchange="filterJudul()"></select>
+          </div>
+        </div>
+
+        <div class="field-row one" style="margin-top:18px;">
+          <div class="field">
+            <label>Pilihan Judul Sebelum ETS - 2 <span class="req">*</span></label>
+            <select id="judul-a2" onchange="filterJudul()"></select>
+          </div>
+        </div>
+
+        <div class="field-row one" style="margin-top:18px;">
+          <div class="field">
+            <label>Pilihan Judul Sesudah ETS - 1 <span class="req">*</span></label>
+            <select id="judul-b1" onchange="filterJudul()"></select>
+          </div>
+        </div>
+
+        <div class="field-row one" style="margin-top:18px;">
+          <div class="field">
+            <label>Pilihan Judul Sesudah ETS - 2 <span class="req">*</span></label>
+            <select id="judul-b2" onchange="filterJudul()"></select>
+          </div>
+        </div>
+
+        <div class="field-row one" style="margin-top:18px;">
+          <div class="field">
+            <label>Berikan penjelasan singkat mengenai dua judul sebelum ETS yang dipilih <span class="req">*</span></label>
+            <textarea id="penjelasan_sebelum_ets" placeholder="Singkat saja..."></textarea>
+          </div>
+        </div>
+
+        <div class="field-row one" style="margin-top:18px;">
+          <div class="field">
+            <label>Berikan penjelasan singkat mengenai dua judul sesudah ETS yang dipilih <span class="req">*</span></label>
+            <textarea id="penjelasan_sesudah_ets" placeholder="Singkat saja..."></textarea>
+          </div>
+        </div>
+
+        <div class="field-row one" style="margin-top:18px;">
+          <div class="field">
+            <label>Apakah bersedia sudah berada di Surabaya pada tanggal 27-28 Agustus 2026 untuk mengikuti seluruh rangkaian pelatihan aslab? <span class="req">*</span></label>
+            <div class="choice-group">
+              <label class="choice-item-solid"><input type="radio" name="kesediaan_hadir" value="bersedia" />Bersedia</label>
+              <label class="choice-item-solid"><input type="radio" name="kesediaan_hadir" value="tidak_bersedia" />Tidak Bersedia</label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-nav">
+        <div></div>
+        <button class="btn-nav-next" onclick="nextStep(2)">
+          Lanjut
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="form-step" id="step-2">
+
+      <div class="card">
+
+        <div class="field-row one">
+          <div class="field">
+            <label>Curriculum Vitae (ATS atau Kreatif) <span class="req">*</span></label>
+            <div class="upload-area">
+              <input type="file" id="file_cv" accept=".pdf" />
+              <div class="upload-label">Klik atau seret file ke sini</div>
+              <div class="upload-hint">PDF · Maks. 10 MB</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-row one" style="margin-top:18px;">
+          <div class="field">
+            <label>Transkrip Nilai <span class="req">*</span></label>
+            <div class="upload-area">
+              <input type="file" id="file_transkrip" accept=".pdf,image/*" />
+              <div class="upload-label">Klik atau seret file ke sini</div>
+              <div class="upload-hint">PDF atau gambar · Maks. 5 MB</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-row one" style="margin-top:18px;">
+          <div class="field">
+            <label>Bukti Follow IG Madya <span class="req">*</span></label>
+            <div class="upload-area">
+              <input type="file" id="file_bukti_follow" accept=".pdf,image/*" />
+              <div class="upload-label">Klik atau seret file ke sini</div>
+              <div class="upload-hint">PDF atau gambar · Maks. 5 MB</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="agree-box">
+          <input type="checkbox" id="agree" />
+          <p>
+            Saya menyatakan bahwa seluruh data dan dokumen yang saya isi dalam formulir ini adalah <strong>benar dan dapat dipertanggungjawabkan</strong>.
+            Saya bersedia menerima konsekuensi apabila ditemukan ketidaksesuaian data.
+          </p>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-nav-back" onclick="nextStep(1)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Kembali
+        </button>
+        <button class="btn-submit" onclick="submitForm()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22 11 13 2 9l20-7z"/></svg>
+          Kirim 
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="page-success" class="page">
+  <div class="success-inner">
+    <div>
+      <img src="image/meme.png" style="width: 70%;height: auto;">
+    </div>
+    <p>
+      Terima kasih telah mendaftar sebagai calon Asisten Fisika Laboratorium I🙌<br/>
+      Ditunggu aja pengumuman selanjutnya.
+    </p>
+    <button class="btn-home" onclick="goHome()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Kembali ke Halaman Utama
+    </button>
+  </div>
+</div>
+
+<!--Lolos berkas -->
+
+<div id="page-lolos-berkas" class="page">
+
+  <div class="announce-nav">
+    <div class="announce-nav-brand">Pendaftaran Asisten Laboratorium I</div>
+    <button class="btn-back" onclick="showPage('page-lobby')">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Beranda
+    </button>
+  </div>
+
+  <div class="announce-body">
+
+    <div class="confetti-banner" style="background: rgba(232,184,75,.07);border: 1px solid rgba(232,184,75,.2);">
+        <h1>Selamat Kepada Kamu<br/>Dinyatakan Lolos Berkas!</h1>
+    </div>
+
+    <div class="jadwal-grid">
+      <div class="jadwal-card sesi-a">
+        <div class="jadwal-sesi-label">Sesi 1</div>
+        <div class="jadwal-row">
+          <span class="jadwal-icon">📅</span>
+          <div><strong><!-- Ganti hari/tanggal --></strong></div>
+        </div>
+        <div class="jadwal-row">
+          <span class="jadwal-icon">🕐</span>
+          <div><strong><!-- Ganti jam --></strong></div>
+        </div>
+        <div class="jadwal-row">
+          <span class="jadwal-icon">📍</span>
+          <div><strong><!-- Ganti ruangan --></strong></div>
+        </div>
+      </div>
+      <div class="jadwal-card sesi-b">
+        <div class="jadwal-sesi-label">Sesi 2</div>
+        <div class="jadwal-row">
+          <span class="jadwal-icon">📅</span>
+          <div><strong>Senin, 15 Juli 2026</strong></div>
+        </div>
+        <div class="jadwal-row">
+          <span class="jadwal-icon">🕐</span>
+          <div><strong><!-- Ganti jam --></strong></div>
+        </div>
+        <div class="jadwal-row">
+          <span class="jadwal-icon">📍</span>
+          <div><strong><!-- Ganti ruangan --></strong></div>
+        </div>
+      </div>
+      <div class="jadwal-card sesi-c">
+        <div class="jadwal-sesi-label">Sesi 3</div>
+        <div class="jadwal-row">
+          <span class="jadwal-icon">📅</span>
+          <div><strong>Senin</strong></div>
+        </div>
+        <div class="jadwal-row">
+          <span class="jadwal-icon">🕐</span>
+          <div><strong><!-- Ganti jam --></strong></div>
+        </div>
+        <div class="jadwal-row">
+          <span class="jadwal-icon">📍</span>
+          <div><strong><!-- Ganti ruangan --></strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="peserta-section">
+      <div class="peserta-section-head">
+        <h2>Daftar Peserta Lolos Berkas</h2>
+      </div>
+      <div class="peserta-search-wrap">
+        <input class="peserta-search" type="text" placeholder="Cari nama atau NRP..." oninput="filterTable('tbl-berkas', this.value)" />
+      </div>
+      <div class="peserta-table-wrap">
+        <table class="peserta-table" id="tbl-berkas">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>NRP</th>
+              <th>Sesi Wawancara</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-berkas">
+            <!-- Baris data diisi oleh JavaScript dari array pesertaBerkas di bawah -->
+          </tbody>
+        </table>
+      </div>
+    </div> 
+
+    <div class="catatan-box">
+      <div>
+        <h3>Note:</h3>
+        <ul>
+          <li>Hadir <strong>15 menit sebelum</strong> jadwal wawancara dimulai.</li>
+          <li>Berpakaian standart kuliah</li>
+          <li>Pertanyaan dapat menghubungi panitia melalui kontak yang tertera.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- lolos jadi aslab yey -->
+<div id="page-lolos-final" class="page">
+
+  <div class="announce-nav">
+    <div class="announce-nav-brand">Pendaftaran Asisten Laboratorium I</div>
+    <button class="btn-back" onclick="showPage('page-lobby')">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Beranda
+    </button>
+  </div>
+
+  <div class="announce-body">
+
+    <div class="confetti-banner">
+      <div class="confetti-banner-inner">
+        <h1>🎉 Selamat YEY!</h1>
+      </div>
+    </div>
+
+    <div class="peserta-section">
+      <div class="peserta-section-head">
+        <h2>Daftar Asisten Laboratorium</h2>
+      </div>
+      <div class="peserta-search-wrap">
+        <input class="peserta-search" type="text" placeholder="Cari nama atau NRP..." oninput="filterTable('tbl-final', this.value)" />
+      </div>
+      <div class="peserta-table-wrap">
+        <table class="peserta-table" id="tbl-final">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>NRP</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-final">
+            <!-- Baris data diisi oleh JavaScript dari array aslabFinal di bawah -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="catatan-box">
+      <span class="catatan-box-icon">📌</span>
+      <div>
+        <h3>Informasi Penting</h3>
+        <ul>
+          <li>Konfirmasi kehadiran orientasi paling lambat <strong>3 hari</strong> setelah pengumuman ini.</li>
+          <li>Bagi yang tidak bisa hadir orientasi, segera hubungi koordinator lab.</li>
+          <li>Asisten yang tidak melakukan konfirmasi dalam batas waktu dianggap <strong>mengundurkan diri</strong>.</li>
+          <li>Selamat bertugas dan menjaga nama baik laboratorium!</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+  
+</body>
+</html>
