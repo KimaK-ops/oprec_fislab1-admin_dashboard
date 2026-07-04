@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — Pendaftaran Aslab</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+</head>
+<body>
+
+<!-- ── PAGE: LOGIN ── -->
+<div id="page-login" class="page active">
+  <div class="login-inner">
+    <h1 class="login-title">Admin Panel</h1>
+    <p class="login-sub">Pendaftaran Asisten Fisika Laboratorium I</p>
+
+    <form id="form-login" class="login-form" autocomplete="on">
+      <div class="field">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" placeholder="admin@contoh.com" required />
+      </div>
+      <div class="field">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" placeholder="••••••••" required />
+      </div>
+      <button type="submit" class="btn-primary btn-login">
+        Masuk
+      </button>
+      <p id="login-error" class="login-error"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ── PAGE: DASHBOARD ── -->
+<div id="page-dashboard" class="page">
+  <div class="dashboard-body">
+
+    <header class="dashboard-head">
+      <div class="dashboard-brand">
+        <h2>Admin Panel</h2>
+        <span>Pendaftaran Asisten Fisika Laboratorium I</span>
+      </div>
+      <button class="btn-logout" onclick="logout()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Logout
+      </button>
+    </header>
+
+    <div class="dashboard-stats" id="stats-bar">
+      <div class="stat-card"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Total Pendaftar</div></div>
+      <div class="stat-card stat-pending"><div class="stat-num" id="stat-pending">0</div><div class="stat-label">Pending</div></div>
+      <div class="stat-card stat-berkas"><div class="stat-num" id="stat-berkas">0</div><div class="stat-label">Lolos Berkas</div></div>
+      <div class="stat-card stat-final"><div class="stat-num" id="stat-final">0</div><div class="stat-label">Lolos Final</div></div>
+      <div class="stat-card stat-gagal"><div class="stat-num" id="stat-gagal">0</div><div class="stat-label">Gagal</div></div>
+    </div>
+
+    <div class="dashboard-main">
+      <div class="dashboard-toolbar">
+        <input class="admin-search" type="text" placeholder="Cari nama atau NRP..." oninput="filterTabel(this.value)" />
+        <button class="btn-refresh" onclick="fetchPendaftar()" title="Muat ulang data">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          Refresh
+        </button>
+      </div>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table" id="tbl-pendaftar">
+          <thead>
+            <tr>
+              <th style="width:48px">No</th>
+              <th>Nama</th>
+              <th>NRP</th>
+              <th>Email</th>
+              <th>No WA</th>
+              <th style="width:150px">Status</th>
+              <th style="width:240px">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-pendaftar">
+          </tbody>
+        </table>
+      </div>
+
+      <p id="empty-state" class="empty-state" style="display:none;">Belum ada pendaftar.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── MODAL: DOKUMEN ── -->
+<div id="modal-dokumen" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-head">
+      <h3 id="modal-title">Dokumen Pendaftar</h3>
+      <button class="modal-close" onclick="tutupModal()">&times;</button>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <p class="modal-loading">Memuat dokumen...</p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="admin.js"></script>
+
+</body>
+</html>

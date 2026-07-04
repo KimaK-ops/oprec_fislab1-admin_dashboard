@@ -10,7 +10,7 @@ Bahasa UI: Bahasa Indonesia, gaya santai/informal (contoh: "Semangat bre🔥🔥
 - `script.js` — semua logic: navigasi page, validasi per step, autosave localStorage, upload Storage, insert ke Supabase, render tabel pengumuman
 - `style.css` — pakai CSS variables di `:root`, jangan hardcode warna baru. Variable yang tersedia: `--navy`, `--blue`, `--mid`, `--accent`, `--accent2`, `--white`, `--bg`, `--bg2`, `--surface`, `--gray50`, `--gray200`, `--gray400`, `--gray700`, `--red`, `--green`, `--text`, `--subtext`. Font: Work Sans + Friz Quadrata dari CDN.
 - `image/meme.png` — gambar di halaman sukses submit, jangan diubah/dihapus
-- `admin.html` + `admin.js` — BELUM ADA, lihat section Fase 2 di bawah
+- `admin.html` + `admin.js` + `admin.css` — admin panel (Fase 2, sudah dibuat). Terpisah dari file publik, tidak di-link dari navigasi publik manapun. Lihat section "Admin Panel" di bawah.
 
 ## Halaman (SPA, satu file)
 1. `#page-lobby` — landing, tombol "Isi Formulir"
@@ -80,18 +80,19 @@ Saya belum pernah deploy website. Kalau membahas/membantu deployment (Vercel, en
 - Pakai bahasa sederhana, hindari istilah teknis tanpa penjelasan singkat
 - Tunggu konfirmasi langkah sebelumnya berhasil sebelum kasih langkah berikutnya
 
-## Fase 2 — Admin panel (roadmap, belum dikerjakan)
-`admin.html` + `admin.js` **belum dibuat**. Spec-nya:
+## Admin Panel (Fase 2, sudah dibuat)
+`admin.html` + `admin.js` + `admin.css` — sudah dibuat dan berjalan.
 
-- File terpisah dari `index.html`/`script.js`, JANGAN digabung ke file publik. Tidak di-link dari navigasi publik manapun.
-- Fitur: login admin, lihat daftar pendaftar dari `pendaftar_aslab`, lihat/download 3 dokumen per pendaftar lewat signed URL, update status pendaftar (lolos berkas / lolos final).
-- Autentikasi: **Supabase Auth** (email + password), BUKAN custom password check manual. Akun admin dibuat manual lewat Supabase Dashboard (Authentication > Users > Add user). **JANGAN bikin halaman signup admin yang terbuka ke publik.**
-- Pakai `SUPABASE_ANON_KEY` yang sama (bukan secret key). Akses tambahan didapat dari sesi login via RLS, bukan dari key berbeda.
+- File terpisah dari `index.html`/`script.js`, tidak di-link dari navigasi publik manapun.
+- Fitur: login admin (Supabase Auth), lihat daftar pendaftar dari `pendaftar_aslab`, lihat/download 3 dokumen per pendaftar lewat signed URL (expiry 300 detik), update status pendaftar lewat dropdown (5 state: `pending`/`lolos_berkas`/`gagal`/`lolos_final`/`ditolak_final`).
+- Autentikasi: **Supabase Auth** (email + password) via `signInWithPassword()`. Akun admin dibuat manual lewat Supabase Dashboard (Authentication > Users > Add user). **TIDAK ada halaman signup.**
+- Cek sesi saat `DOMContentLoaded` via `getSession()` — kalau ada langsung ke dashboard, kalau null tampilkan login.
+- Config (`SUPABASE_URL`/`SUPABASE_ANON_KEY`/`BUCKET`) dideklarasi ulang di `admin.js` — **harus sama persis dengan script.js**. Kalau ubah di satu file, ubah juga yang lain.
 
-### RLS tambahan yang diperlukan (selain anon)
-- SELECT di `pendaftar_aslab`: izinkan `authenticated`, larang `anon`
-- UPDATE di `pendaftar_aslab` (ubah status lolos berkas/final): izinkan `authenticated`, larang `anon`
-- SELECT di `storage.objects` bucket `pendaftar_dokumen`: izinkan `authenticated` generate signed URL, larang `anon`
+### RLS yang sudah dipasang
+- SELECT di `pendaftar_aslab`: `authenticated` boleh, `anon` larang (kecuali untuk halaman pengumuman nanti)
+- UPDATE di `pendaftar_aslab`: `authenticated` boleh, `anon` larang
+- SELECT di `storage.objects` bucket `pendaftar_dokumen`: `authenticated` boleh generate signed URL, `anon` larang
 
-### Keterkaitan ke halaman pengumuman
-Setelah admin update kolom `status`, `index.html` (`#page-lolos-berkas`, `#page-lolos-final`) diubah dari array hardcode jadi fetch data asli dari Supabase (read-only, filter by `status`, pakai `SUPABASE_ANON_KEY`).
+### Keterkaitan ke halaman pengumuman (scope terpisah, belum dikerjakan)
+`#page-lolos-berkas` dan `#page-lolos-final` di index.html masih render dari array hardcode `pesertaBerkas`/`aslabFinal` (placeholder `'—'`). Setelah admin update status, ubah kedua halaman ini jadi fetch read-only dari Supabase (filter by `status`: `lolos_berkas` untuk `#page-lolos-berkas`, `lolos_final` untuk `#page-lolos-final`, pakai `SUPABASE_ANON_KEY`). Butuh RLS anon SELECT untuk `pendaftar_aslab` agar halaman publik bisa baca — pasang setelah halaman pengumuman siap di-wire.
