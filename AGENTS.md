@@ -34,10 +34,12 @@ Setiap file diupload ke path: `<nrp>/<folder>_<timestamp>.<ext>`
 - Lihat `uploadDokumen()` di `script.js:214-223`. Path disimpan di kolom `file_*_path` tabel.
 
 ## Skema tabel `pendaftar_aslab`
-Inferensi dari `kumpulkanFormData()` (`script.js:226-250`) + insert (`script.js:291-296`). Verifikasi ke Supabase Dashboard jika ragu.
+Inferensi dari `kumpulkanFormData()` (`script.js:226-250`) + insert (`script.js:291-296`) + admin.js (`fetchPendaftar`/`updateStatus`/`bukaModalDokumen`). Verifikasi ke Supabase Dashboard jika ragu.
 
 | kolom | tipe | sumber |
 |---|---|---|
+| `id` | uuid/serial (PK) | auto — dipakai admin.js untuk `.eq('id', id)` update & key baris tabel |
+| `created_at` | timestamptz | auto — dipakai admin.js untuk `.order('created_at')` (terbaru di atas) |
 | `nama_lengkap` | text | input |
 | `nrp` | text | input |
 | `email` | text | input |
@@ -54,7 +56,7 @@ Inferensi dari `kumpulkanFormData()` (`script.js:226-250`) + insert (`script.js:
 | `file_cv_path` | text | Storage path |
 | `file_transkrip_path` | text | Storage path |
 | `file_bukti_follow_path` | text | Storage path |
-| `status` | text/enum | **ditambah saat Fase 2, belum ada di kode/script.js sekarang** |
+| `status` | text/enum | admin.js only (read di `fetchPendaftar` + update di `updateStatus`). **Tidak ada di script.js** — form publik tidak pernah menulis kolom ini. Default diasumsikan `pending`. |
 
 Nama kolom snake_case, konsisten dengan id input di HTML.
 
@@ -73,6 +75,11 @@ Hanya CV yang wajib PDF murni. Validasi ada di `validateFile()` (`script.js:185-
 
 ## Halaman pengumuman (scope terpisah, setelah Fase 2)
 `#page-lolos-berkas` dan `#page-lolos-final` render dari array hardcode `pesertaBerkas` / `aslabFinal` (sekarang placeholder `'—'`). Setelah admin panel jadi dan kolom `status` dipakai, ubah kedua halaman ini jadi fetch read-only dari Supabase (filter by `status`, pakai `SUPABASE_ANON_KEY` seperti biasa). Jangan sentuh dulu kecuali diminta eksplisit.
+
+## Git remotes
+- `origin` → `KimaK-ops/oprec_fislab1-admin_dashboard` (fork yang ada admin panel; push ke sini)
+- `upstream` → `KimaK-ops/OpenRecruitment_Fislab1` (repo publik asli tanpa admin)
+Hanya 3 commit. `.gitattributes` LF-normalize auto.
 
 ## Deployment — cara komunikasi
 Saya belum pernah deploy website. Kalau membahas/membantu deployment (Vercel, env variable, DNS, dll):
