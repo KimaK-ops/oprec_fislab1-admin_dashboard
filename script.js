@@ -181,6 +181,20 @@ function validateStep(step) {
   return valid;
 }
 
+document.querySelectorAll(".upload-area").forEach(area => {
+    const input = area.querySelector('input[type="file"]');
+    const fileName = area.querySelector(".file-name");
+    input.addEventListener("change", function(){
+        if(this.files.length){
+            area.classList.add("has-file");
+            fileName.textContent = this.files[0].name;
+        }else{
+            area.classList.remove("has-file");
+            fileName.textContent = "";
+        }
+    });
+});
+
 /* ── Validasi file sebelum upload ── */
 function validateFile(file, jenis) {
   const limits = {
